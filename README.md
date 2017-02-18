@@ -1,19 +1,44 @@
 # MineSweeper2
-// I have decided to work on timing as the first component as it is important that i master this topic, due to its possible importance in future projects
+import java.util.*;
 
-
-import java.util.Random;
-class Timing
-  {
-  public static void main(String[] args) throws Exception
-    {
-    long timeStamp = (System.nanoTime() / 10000000);
-    String startedString = String.format("This program %s at %d\n", "started", timeStamp);
-    System.out.print(startedString);
-    Thread.sleep(5000);
-    timeStamp = (System.nanoTime() / 10000000);
-    String endedString = String.format("This program %s at %d\n", "ended", timeStamp);
-    System.out.print(endedString);
-    }
-  }
-
+class minesweeper2
+{
+	public static void main(String [] args) 
+	{
+		char[][] dArr = {{'0','0','0','1','1','1','0','0','0','0'},{'1','1','1','1','m','1','1','1','1','0'},{'1','m','1','1','1','1','1','m','1','0'},{'1','2','2','2','2','2','2','1','1','0'},{'0','1','m','2','m','m','2','0','0','0'},
+							{'0','1','1','2','3','m','2','0','0','0'},{'0','1','1','1','1','1','2','1','1','0'},{'1','2','m','1','0','0','1','m','1','0'},{'1','m','2','1','0','0','1','1','1','0'},{'1','1','1','0','0','0','0','0','0','0'}};
+		
+		
+		
+		
+		for (int i=0;i<10;i++)
+			{
+				int x = (int )(Math.random() * 9 + 0.5);
+				int t = (int )(Math.random() * 9 + 0.5);
+				if (dArr[x][t] == 'y')
+					{
+						i--;
+					}
+				else
+					{
+						dArr[x][t] = 'y';
+					}
+			}
+			
+			
+			
+		
+		
+		
+		for (int a=0;a<10;a++)
+		{
+			for (int s=0;s<10;s++)
+			{
+				System.out.print(dArr[a][s]);
+				System.out.print(" ");
+			}
+			System.out.println();
+		}
+	}
+	
+}
