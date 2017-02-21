@@ -1,0 +1,101 @@
+import java.util.*;
+
+public class minesweeper2
+{
+	//Public for now
+	public char[][] dArr = {{'0','0','0','0','0','0','0','0','0','0'},{'0','0','0','0','0','0','0','0','0','0'},{'0','0','0','0','0','0','0','0','0','0'},{'0','0','0','0','0','0','0','0','0','0'},{'0','0','0','0','0','0','0','0','0','0'},
+							{'0','0','0','0','0','0','0','0','0','0'},{'0','0','0','0','0','0','0','0','0','0'},{'0','0','0','0','0','0','0','0','0','0'},{'0','0','0','0','0','0','0','0','0','0'},{'0','0','0','0','0','0','0','0','0','0'}};
+	int x = 0;
+	int y = 0;
+	
+	public void main(String [] args) 
+	{
+		for (int i=0;i<10;i++)		// Ten mines for now
+			{
+				int x = (int )(Math.random() * 9 + 0.5); //generating a x coordinate 
+				int y = (int )(Math.random() * 9 + 0.5); //generating a y coordinate 
+					
+					if (dArr[x][y] == 'm') // if a mine is already in that place
+						{
+							i--;	
+						}
+					else
+						{
+						
+						dArr[x][y] = 'm';		//mine is not already in this spot, place mine	
+
+							if(y < 9)				// Setting up numbers around the mine and also making sure numbers are not placed outside the board
+							{
+								y = y+1;			// It will run thru every one of these 'if' statements creating a box around the outside of the mine
+								conditions();
+							}						//This will likely take a large amount of time, but refining can be done later when my java skills progress
+							if(y > 0)				
+							{
+								y = y-1;			//There will this setup when the board size is changed but i have plan for that
+								conditions();
+							}
+							if(x < 9)
+							{
+								x = x+1;
+								conditions();
+							}
+							if(x > 0)
+							{
+								x = x-1;
+								conditions();
+							}
+							if(x < 9 && y < 9)
+							{
+								x = x + 1;
+								y = y + 1;
+								conditions();
+							}
+							if(x > 0 && y > 0)
+							{
+								x = x - 1;
+								y = y - 1;	
+								conditions();
+							}
+							if(x < 9 && y > 0)
+							{
+								x = x + 1;
+								y = y - 1;
+								conditions();
+							}
+							if(x > 0 && y < 9)
+							{	
+								x = x - 1;
+								y = y + 1;
+								conditions();
+							}
+						
+					}
+			}
+			
+		for (int a=0;a<10;a++)		// Printing the board now everything is in place
+		{
+			for (int s=0;s<10;s++)
+			{
+				System.out.print(dArr[a][s]);
+				System.out.print(" ");
+			}
+			System.out.println();		// space the board out
+		}
+	}
+	
+	
+	public void conditions()
+	{
+		if(dArr[x][y] == '0')		//this checks that the number does not overwrite other mines or numbers
+			{
+				dArr[x][y] = '1';
+			}
+			else
+			{
+				if(dArr[x][y] == '1') // Some kind of 'for' loop needs to be implemented here so i dont have to have 9 'if' statements 
+					{
+						dArr[x][y] = '2';
+					}	
+			}
+	}
+}
